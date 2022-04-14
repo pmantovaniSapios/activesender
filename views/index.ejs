@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+
+  <div class="container mt-3">
+    <div class="row align-items-center">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form>
+
+            <div class="row align-items-center">
+
+              <div class="col mb-3">
+                <label for="exampleInputTelefone" class="form-label">Telefone</label>
+                <input type="number" class="form-control shadow-sm" id="exampleInputTelefone"
+                  aria-describedby="Telefone">
+              </div>
+
+              <div class="col mb-3">
+                <p class="template">Template</p>
+                <select id="exampleInputTemplate" class="form-select shadow-sm" aria-label="Default select example">
+                  <option selected disabled>Selecione o Template HSM</option>
+                  <option value="1">Template 01</option>
+                  <option value="2">Template 02</option>
+                  <option value="3">Template 03</option>
+                </select>
+              </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary shadow-sm" onclick="sendHSM()">Enviar template <svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
+                viewBox="0 0 16 16">
+                <path
+                  d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+              </svg>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    function sendHSM() {
+      let numero = document.getElementById("exampleInputTelefone").value;
+      let select = document.getElementById("exampleInputTemplate");
+      select = select.options[select.selectedIndex].text;
+
+      //alert(`+55${numero},${select}`)
+
+      // axios.post('https://preprod.sapios.com.br/botrouter/api/webhook/rest/199', {
+      //     from: {
+      //         "userid": "teste",
+      //         "name": "user1",
+      //         "username": "teste"
+      //     },
+      //     type: "message",
+      //     callbackurl: "https://sapios.free.beeceptor.com",
+      //     text: `+55${numero},${select}`
+      // }, {
+      //     headers: {
+      //         'Content-Type': 'application/json',
+      //         'Authorization': 'ea6d05d0-78dc-4130-8b19-5c65ff23044a'
+      //     },
+      // })
+      //     .then(function (response) {
+      //         console.log(response);
+      //     })
+      //     .catch(function (error) {
+      //         console.log(error);
+      //     });
+
+      let option = {
+        method: "POST",
+        Headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'ea6d05d0-78dc-4130-8b19-5c65ff23044a'
+        },
+        body: JSON.stringify(select)
+      }
+
+      fetch('/', option)
+        .then(function (response) {
+          console.log(response)
+        })
+        .then(function (myBlob) {
+          var objectURL = URL.createObjectURL(myBlob);
+          myImage.src = objectURL;
+        });
+
+
+
+
+    }
+
+  </script>
+
+</body>
+
+</html>
