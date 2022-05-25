@@ -14,9 +14,9 @@ router.post('/api', function (req, res, next) {
   if(req.body.template === '1') {
     template = "Template1"
   }else if(req.body.template === '2') {
-    template = "Template"
+    template = "Template2"
   }else {
-    template = "Template3";
+    template = "Template";
   }
     
   axios.post('https://preprod.sapios.com.br/botrouter/api/webhook/rest/199', {
