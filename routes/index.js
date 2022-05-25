@@ -14,7 +14,7 @@ router.post('/api', function (req, res, next) {
   if(req.body.template === '1') {
     template = "Template1"
   }else if(req.body.template === '2') {
-    template = "Template2"
+    template = "Template"
   }else {
     template = "Template3";
   }
