@@ -44,7 +44,7 @@ router.post('/api', function (req, res, next) {
     },
   })
     .then(
-      res.redirect("http://localhost:3000/")
+      res.redirect("https://connector.sapios.com.br/env/")
     )
     .catch(function (error) {
       console.log(error);
