@@ -13,14 +13,14 @@ router.get('/', function (req, res, next) {
 
 router.post('/api', function (req, res, next) {
   let uuid = uuidv4();
-  let template;
-  if (req.body.template === '1') {
-    template = "Template1"
-  } else if (req.body.template === '2') {
-    template = "Template2"
-  } else {
-    template = "Template";
-  }
+  // let template;
+  // if (req.body.template === '1') {
+  //   template = "Template1"
+  // } else if (req.body.template === '2') {
+  //   template = "Template2"
+  // } else {
+  //   template = "Template";
+  // }
 
   axios.post('https://preprod.sapios.com.br/botrouter/api/webhook/rest/267', {
     from: {
@@ -43,8 +43,8 @@ router.post('/api', function (req, res, next) {
       'Authorization': '360f782d-e9e5-436b-8fc6-560b6a4747bd'
     },
   })
-    .then(
-      res.location("https://connector.sapios.com.br/env/")
+    .then(res =>
+      res.render('index', { title: 'Active Sender' })
     )
     .catch(function (error) {
       console.log(error);
@@ -52,7 +52,7 @@ router.post('/api', function (req, res, next) {
 
   let body = req.body;
   console.log(body);
-  res.location("https://connector.sapios.com.br/env/")
+  res.render('index', { title: 'Active Sender' });
 });
 
 module.exports = router;
