@@ -46,7 +46,7 @@ router.post("/", function (req, res, next) {
       console.log(error);
     });
 
-  res.render("https://connector.sapios.com.br/env/");
+  res.end()
 });
 
 module.exports = router;
