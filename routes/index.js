@@ -52,7 +52,7 @@ router.post('/api', function (req, res, next) {
 
   let body = req.body;
   console.log(body);
-  res.redirect("https://connector.sapios.com.br/env/")
+  res.redirect("/")
 });
 
 module.exports = router;
